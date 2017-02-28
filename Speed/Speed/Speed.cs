@@ -37,8 +37,9 @@ namespace Speed
             };
 
             Timer task = new Timer();
+
             task.Elapsed += new ElapsedEventHandler(onTick);
-            task.Interval = 1 * 1000;
+            task.Interval = 1000;
             task.Enabled = true;
         }
 
@@ -66,10 +67,10 @@ namespace Speed
                         double line = Math.Sqrt(Math.Pow(x, 2) + Math.Pow(z, 2));
                         double diagonal = Math.Sqrt(Math.Pow(line, 2) + Math.Pow(y, 2));
 
-                        double speed = Math.Round((diagonal / 1 * 1000) * (1 * 60 * 60), 2);
+                        double speed = Math.Round((diagonal / 1000) * 3600, 2);
 
-                        if(speed > 40) target.SendMessage(ChatColors.Red + $"{speed} km/h", MessageType.Popup);
-                        else target.SendMessage(ChatColors.Green + $"{speed} km/h", MessageType.Popup);
+                        if(speed > 40) target.SendMessage(ChatColors.Red + speed + " km/h", MessageType.Popup);
+                        else target.SendMessage(ChatColors.Green + speed + " km/h", MessageType.Popup);
 
                         LatestLocation.Remove(target);
                         LatestLocation.Add(target, target.KnownPosition);
